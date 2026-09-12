@@ -5,9 +5,9 @@
 /* --- базовый тёмный фон с лёгкими зелёными градиентами по углам --- */
 body{
   background:
-    radial-gradient(1200px 700px at 15% -10%, #16281c 0%, transparent 60%),
-    radial-gradient(900px 600px at 100% 0%, #102018 0%, transparent 55%),
-    #080d0a;
+    radial-gradient(1200px 700px at 15% -10%, #1c1c1c 0%, transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, #141414 0%, transparent 55%),
+    #0a0a0a;
 }
 
 /* --- слой сетки на весь экран, поверх фона, но под контентом --- */
@@ -17,8 +17,8 @@ body{
   pointer-events:none;
   z-index:0;
   background-image:
-    linear-gradient(rgba(96,220,140,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96,220,140,.05) 1px, transparent 1px);
+    linear-gradient(rgba(200,200,200,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,200,200,.05) 1px, transparent 1px);
   background-size:64px 64px;
   /* мягко гасим сетку по краям, чтобы не было "обоев" */
   mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
@@ -31,7 +31,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(96,220,140,.05), transparent 40%);
+  background:linear-gradient(180deg, rgba(200,200,200,.05), transparent 40%);
   pointer-events:none;
 }
 
@@ -65,7 +65,7 @@ body{
   position:absolute;
   top:50%;
   left:50%;
-  border:1px solid rgba(96,220,140,.055);
+  border:1px solid rgba(200,200,200,.055);
   border-radius:50%;
   transform:translate(-50%, -50%);
   animation:orbit-spin linear infinite;
@@ -75,26 +75,26 @@ body{
 .orbit--1{
   width:32%;
   height:32%;
-  border-color:rgba(96,220,140,.07);
+  border-color:rgba(200,200,200,.07);
   animation-duration:120s;
 }
 .orbit--2{
   width:52%;
   height:52%;
-  border-color:rgba(96,220,140,.06);
+  border-color:rgba(200,200,200,.06);
   animation-duration:180s;
   animation-direction:reverse;
 }
 .orbit--3{
   width:74%;
   height:74%;
-  border-color:rgba(96,220,140,.05);
+  border-color:rgba(200,200,200,.05);
   animation-duration:260s;
 }
 .orbit--4{
   width:96%;
   height:96%;
-  border-color:rgba(96,220,140,.04);
+  border-color:rgba(200,200,200,.04);
   animation-duration:340s;
   animation-direction:reverse;
 }
