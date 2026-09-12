@@ -17,8 +17,8 @@ body{
   pointer-events:none;
   z-index:0;
   background-image:
-    linear-gradient(rgba(200,200,200,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,200,200,.05) 1px, transparent 1px);
+    linear-gradient(rgba(58,191,156,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58,191,156,.10) 1px, transparent 1px);
   background-size:64px 64px;
   /* мягко гасим сетку по краям, чтобы не было "обоев" */
   mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
@@ -31,7 +31,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(200,200,200,.05), transparent 40%);
+  background:linear-gradient(180deg, rgba(58,191,156,.10), transparent 40%);
   pointer-events:none;
 }
 
@@ -65,7 +65,7 @@ body{
   position:absolute;
   top:50%;
   left:50%;
-  border:1px solid rgba(200,200,200,.055);
+  border:1px solid rgba(58,191,156,.12);
   border-radius:50%;
   transform:translate(-50%, -50%);
   animation:orbit-spin linear infinite;
@@ -75,26 +75,26 @@ body{
 .orbit--1{
   width:32%;
   height:32%;
-  border-color:rgba(200,200,200,.07);
+  border-color:rgba(58,191,156,.14);
   animation-duration:120s;
 }
 .orbit--2{
   width:52%;
   height:52%;
-  border-color:rgba(200,200,200,.06);
+  border-color:rgba(58,191,156,.13);
   animation-duration:180s;
   animation-direction:reverse;
 }
 .orbit--3{
   width:74%;
   height:74%;
-  border-color:rgba(200,200,200,.05);
+  border-color:rgba(58,191,156,.10);
   animation-duration:260s;
 }
 .orbit--4{
   width:96%;
   height:96%;
-  border-color:rgba(200,200,200,.04);
+  border-color:rgba(58,191,156,.09);
   animation-duration:340s;
   animation-direction:reverse;
 }
