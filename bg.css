@@ -1,0 +1,149 @@
+/* ============================================================
+   bg.css — фоновая сетка, подложка и орбиты сайта (зелёная палитра)
+   ============================================================ */
+
+/* --- базовый тёмный фон с лёгкими зелёными градиентами по углам --- */
+body{
+  background:
+    radial-gradient(1200px 700px at 15% -10%, #16281c 0%, transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, #102018 0%, transparent 55%),
+    #080d0a;
+}
+
+/* --- слой сетки на весь экран, поверх фона, но под контентом --- */
+.bg-grid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    linear-gradient(rgba(96,220,140,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,220,140,.05) 1px, transparent 1px);
+  background-size:64px 64px;
+  /* мягко гасим сетку по краям, чтобы не было "обоев" */
+  mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 30%, #000 20%, transparent 85%);
+  opacity:.55;
+}
+
+/* --- тонкая горизонтальная "подсветка" сверху, для объёма --- */
+.bg-grid::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(96,220,140,.05), transparent 40%);
+  pointer-events:none;
+}
+
+/* ============================================================
+   Фоновые орбиты — едва заметные вложенные эллипсы
+   ============================================================ */
+
+.bg-orbits{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+  /* мягко гасим орбиты по краям, чтобы не было жёстких линий у бортов */
+  mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 95%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 50%, #000 30%, transparent 95%);
+}
+
+/* общий контейнер для всех орбит: центрируем */
+.bg-orbits__system{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:min(120vw, 1600px);
+  aspect-ratio:1 / 1;
+  transform:translate(-50%, -50%);
+}
+
+/* каждая орбита — эллипс с тонкой обводкой */
+.orbit{
+  position:absolute;
+  top:50%;
+  left:50%;
+  border:1px solid rgba(96,220,140,.055);
+  border-radius:50%;
+  transform:translate(-50%, -50%);
+  animation:orbit-spin linear infinite;
+}
+
+/* разные размеры и скорости */
+.orbit--1{
+  width:32%;
+  height:32%;
+  border-color:rgba(96,220,140,.07);
+  animation-duration:120s;
+}
+.orbit--2{
+  width:52%;
+  height:52%;
+  border-color:rgba(96,220,140,.06);
+  animation-duration:180s;
+  animation-direction:reverse;
+}
+.orbit--3{
+  width:74%;
+  height:74%;
+  border-color:rgba(96,220,140,.05);
+  animation-duration:260s;
+}
+.orbit--4{
+  width:96%;
+  height:96%;
+  border-color:rgba(96,220,140,.04);
+  animation-duration:340s;
+  animation-direction:reverse;
+}
+
+/* точка на орбите — маленькая планета */
+.orbit__planet{
+  position:absolute;
+  top:-3px;
+  left:50%;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:rgba(125,225,154,.55);
+  box-shadow:0 0 8px rgba(125,225,154,.5);
+  transform:translateX(-50%);
+}
+
+/* разные планеты: не у всех, чтобы было не густо */
+.orbit--2 .orbit__planet{
+  background:rgba(63,191,107,.5);
+  box-shadow:0 0 8px rgba(63,191,107,.45);
+}
+.orbit--3 .orbit__planet{
+  width:4px; height:4px;
+  background:rgba(168,240,181,.5);
+  box-shadow:0 0 6px rgba(168,240,181,.45);
+}
+.orbit--4 .orbit__planet{
+  display:none;
+}
+
+@keyframes orbit-spin{
+  from{ transform:translate(-50%, -50%) rotate(0deg); }
+  to  { transform:translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- на узких экранах орбиты слишком крупные — уменьшим и притушим --- */
+@media (max-width:860px){
+  .bg-orbits__system{
+    width:min(160vw, 900px);
+    opacity:.7;
+  }
+}
+
+/* --- если хочется медленного «дыхания» сетки — раскомментируй --- */
+/*
+@keyframes grid-breathe{
+  0%,100%{opacity:.45}
+  50%{opacity:.65}
+}
+.bg-grid{animation:grid-breathe 18s ease-in-out infinite}
+*/

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Maxim Nikonov — Infrastructure Engineer</title>
+<link rel="stylesheet" href="bg.css" />
+<style>
+  :root{
+    --bg:#0d0c0a;
+    --bg2:#151310;
+    --panel:#1c1914;
+    --panel2:#232019;
+    --line:#3a3428;
+    --line2:#4a4232;
+    --text:#efe6d2;
+    --muted:#b9ad93;
+    --dim:#8a7f68;
+    --accent:#e0872f;
+    --accent2:#f2b45c;
+    --amber:#ffc46b;
+    --olive:#8f9a5f;
+    --khaki:#c9b98a;
+    --rust:#b4532a;
+    --cream:#f6efdd;
+    --mono:"IBM Plex Mono","JetBrains Mono","SFMono-Regular",Consolas,monospace;
+    --sans:"Inter","Segoe UI",Roboto,Arial,sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  .wrap{position:relative; z-index:2; max-width:1180px; margin:0 auto; padding:0 24px}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:linear-gradient(180deg, rgba(13,12,10,.92), rgba(13,12,10,.65));
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1180px; margin:0 auto; padding:10px 24px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--olive);
+    box-shadow:0 0 10px var(--olive);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{opacity:.35}}
+  .topbar .sep{flex:1}
+  .topbar a{color:var(--khaki); text-decoration:none; border-bottom:1px dashed transparent}
+  .topbar a:hover{color:var(--accent2); border-bottom-color:var(--accent2)}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:90px 0 60px; position:relative}
+  .tag{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.3em; text-transform:uppercase;
+    color:var(--accent2);
+    border:1px solid var(--line2);
+    background:rgba(224,135,47,.07);
+    padding:7px 14px; border-radius:2px;
+  }
+
+  .hero-cols{
+    display:grid;
+    grid-template-columns:1.6fr .8fr;
+    gap:48px;
+    align-items:center;
+    margin-top:26px;
+  }
+
+  h1{
+    font-family:var(--mono);
+    font-size:clamp(2.4rem, 6.5vw, 5rem);
+    line-height:1.02;
+    margin:0 0 10px;
+    letter-spacing:-.02em;
+    color:var(--cream);
+    text-transform:uppercase;
+  }
+  h1 span{color:var(--accent); text-shadow:0 0 40px rgba(224,135,47,.35)}
+  .sub{
+    font-family:var(--mono); font-size:clamp(.85rem,1.6vw,1.05rem);
+    color:var(--khaki); letter-spacing:.06em; margin-bottom:26px;
+  }
+  .lead{max-width:640px; color:var(--muted); font-size:1.02rem}
+
+  /* ---------- avatar ---------- */
+  .avatar{
+    position:relative;
+    justify-self:end;
+    width:100%;
+    max-width:320px;
+    aspect-ratio:1 / 1;
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line2);
+    background:linear-gradient(180deg, var(--panel), var(--bg2));
+    box-shadow:
+      0 0 0 1px rgba(224,135,47,.12),
+      0 24px 60px -20px rgba(0,0,0,.8),
+      0 0 80px -30px rgba(224,135,47,.5);
+    transition:box-shadow .45s ease, border-color .45s ease;
+  }
+  .avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    filter:grayscale(1) contrast(1.05);
+    transition:filter .45s ease, transform .45s ease;
+  }
+  .avatar:hover{
+    border-color:var(--accent);
+    box-shadow:
+      0 0 0 1px rgba(224,135,47,.35),
+      0 24px 60px -20px rgba(0,0,0,.8),
+      0 0 100px -20px rgba(224,135,47,.7);
+  }
+  .avatar:hover img{
+    filter:grayscale(0) contrast(1.05) saturate(1.05);
+    transform:scale(1.03);
+  }
+  .avatar::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(224,135,47,.10), transparent 40%, rgba(13,12,10,.35));
+    pointer-events:none;
+  }
+  .avatar::before{
+    content:"";
+    position:absolute; top:10px; right:10px;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--olive);
+    box-shadow:0 0 10px var(--olive);
+    z-index:2;
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+
+  /* ---------- telemetry strip ---------- */
+  .telemetry{
+    margin-top:44px;
+    border:1px solid var(--line);
+    background:rgba(28,25,20,.72);
+    padding:14px 18px;
+    font-family:var(--mono); font-size:11.5px; color:var(--dim);
+    display:flex; gap:26px; flex-wrap:wrap; letter-spacing:.1em;
+  }
+  .telemetry b{color:var(--accent2); font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{padding:70px 0; border-top:1px solid var(--line)}
+  .sec-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:36px;
+  }
+  .sec-num{
+    font-family:var(--mono); font-size:12px; color:var(--accent);
+    letter-spacing:.2em;
+  }
+  h2{
+    font-family:var(--mono); font-size:clamp(1.2rem,2.6vw,1.7rem);
+    text-transform:uppercase; letter-spacing:.08em; margin:0; color:var(--cream);
+  }
+  .sec-line{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
+
+  /* ---------- timeline ---------- */
+  .job{
+    display:grid; grid-template-columns:230px 1fr; gap:28px;
+    padding:26px 0; border-bottom:1px dashed var(--line);
+  }
+  .job:last-child{border-bottom:none}
+  .job-when{
+    font-family:var(--mono); font-size:12px; color:var(--accent2);
+    letter-spacing:.08em;
+  }
+  .job-when em{
+    display:block; font-style:normal; color:var(--dim); margin-top:6px; font-size:11px;
+  }
+  .job h3{
+    margin:0 0 4px; font-size:1.18rem; color:var(--cream); letter-spacing:.01em;
+  }
+  .job .company{
+    font-family:var(--mono); font-size:12px; color:var(--olive);
+    text-transform:uppercase; letter-spacing:.14em; margin-bottom:14px;
+  }
+  .job p{margin:0 0 12px; color:var(--muted); font-size:.96rem}
+  .job ul{margin:0; padding-left:18px; color:var(--muted); font-size:.94rem}
+  .job li{margin-bottom:7px}
+  .job li::marker{color:var(--accent)}
+
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
+  .chip{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.08em;
+    border:1px solid var(--line2); color:var(--khaki);
+    padding:4px 9px; border-radius:2px; background:rgba(201,185,138,.05);
+  }
+
+  /* ---------- skills ---------- */
+  .skills{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;
+  }
+  .skill-card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,var(--panel),var(--bg2));
+    padding:20px; border-radius:3px;
+    transition:border-color .25s, transform .25s;
+  }
+  .skill-card:hover{border-color:var(--accent); transform:translateY(-3px)}
+  .skill-card h4{
+    margin:0 0 12px; font-family:var(--mono); font-size:11.5px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--accent2);
+  }
+  .skill-card p{margin:0; color:var(--muted); font-size:.92rem}
+
+  /* ---------- highlight ---------- */
+  .highlight{
+    border:1px solid var(--line2);
+    background:
+      linear-gradient(135deg, rgba(224,135,47,.09), transparent 55%),
+      var(--panel);
+    padding:30px; border-radius:3px;
+    position:relative;
+  }
+  .highlight::after{
+    content:""; position:absolute; right:18px; top:18px;
+    width:9px; height:9px; border-radius:50%; background:var(--rust);
+    box-shadow:0 0 12px var(--rust);
+  }
+  .highlight h3{
+    font-family:var(--mono); margin:0 0 12px; color:var(--cream);
+    font-size:1.05rem; letter-spacing:.04em;
+  }
+  .highlight p{margin:0; color:var(--muted)}
+  .highlight .metric{
+    font-family:var(--mono); color:var(--amber); font-size:1.5rem;
+    display:block; margin:14px 0 4px;
+  }
+
+  /* ---------- education ---------- */
+  .edu{display:grid; gap:14px}
+  .edu-item{
+    display:grid; grid-template-columns:110px 1fr; gap:20px;
+    border-left:2px solid var(--line2); padding:8px 0 8px 18px;
+    transition:border-color .25s;
+  }
+  .edu-item:hover{border-color:var(--accent)}
+  .edu-item .year{
+    font-family:var(--mono); color:var(--accent2); font-size:13px;
+  }
+  .edu-item h4{margin:0 0 4px; color:var(--cream); font-size:1rem}
+  .edu-item p{margin:0; color:var(--dim); font-size:.9rem}
+
+  /* ---------- contact ---------- */
+  .contact{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;
+    margin-top:28px;
+  }
+  .contact a{
+    display:block; text-decoration:none; color:var(--text);
+    border:1px solid var(--line); background:var(--panel);
+    padding:18px; border-radius:3px; transition:.25s;
+  }
+  .contact a:hover{border-color:var(--accent); background:var(--panel2)}
+  .contact small{
+    display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:8px;
+  }
+  .contact span{font-family:var(--mono); color:var(--accent2); font-size:.95rem}
+
+  footer{
+    border-top:1px solid var(--line); padding:34px 0 60px;
+    font-family:var(--mono); font-size:11.5px; color:var(--dim);
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    letter-spacing:.08em;
+  }
+
+  @media (max-width:860px){
+    .hero-cols{grid-template-columns:1fr; gap:32px}
+    .avatar{justify-self:start; max-width:260px}
+    .job{grid-template-columns:1fr; gap:10px}
+    header.hero{padding:60px 0 40px}
+  }
+  @media (max-width:520px){
+    .edu-item{grid-template-columns:1fr; gap:4px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="bg-orbits">
+  <div class="bg-orbits__system">
+    <div class="orbit orbit--1"><span class="orbit__planet"></span></div>
+    <div class="orbit orbit--2"><span class="orbit__planet"></span></div>
+    <div class="orbit orbit--3"><span class="orbit__planet"></span></div>
+    <div class="orbit orbit--4"></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="dot"></span>
+    <span>NIKONOV M. / INFRASTRUCTURE</span>
+    <span class="sep"></span>
+    <a href="index.html">HOME</a>
+    <a href="#experience">EXPERIENCE</a>
+    <a href="#skills">SKILLS</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="tag">// UPTIME: 7 YEARS · STATUS: ONLINE</div>
+
+    <div class="hero-cols">
+      <div>
+        <h1>Maxim<br><span>Nikonov</span></h1>
+        <div class="sub">INFRASTRUCTURE ENGINEER · LINUX · VIRTUALIZATION</div>
+        <p class="lead">
+          Infrastructure engineer with 7+ years in IT, including 5+ years
+          supporting and administering enterprise infrastructure.
+          Focused on virtualization, Linux administration,
+          and automation of infrastructure tasks.
+        </p>
+      </div>
+
+      <div class="avatar">
+        <img src="ava.png" alt="Maxim Nikonov" />
+      </div>
+    </div>
+
+    <div class="telemetry">
+      <span><b>7y 3m</b> EXPERIENCE</span>
+      <span><b>27</b> YEARS OLD</span>
+      <span><b>B1</b> ENGLISH</span>
+    </div>
+  </header>
+
+  <section id="experience">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Experience</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        NOV 2025 — PRESENT
+        <em>11 months</em>
+      </div>
+      <div>
+        <h3>Engineer, Tier 2.5</h3>
+        <div class="company">ONLANTA LLC · System Integration</div>
+        <p>
+          Supporting and administering enterprise infrastructure based on VMware vSphere/vCloud Director,
+          oVirt/zVirt, and KVM. Working with Linux and Windows servers, virtualization, backup,
+          monitoring, and network infrastructure in production.
+        </p>
+        <ul>
+          <li>Migrations of virtual machines and infrastructure services, VDI, datastore, and cluster support.</li>
+          <li>Incident recovery, VMware NSX-T/NSX-V, VPN, VLAN/VXLAN, Disaster Recovery.</li>
+          <li>Automation with Bash, Python, Ansible, PowerCLI; GitLab and Git-based workflow.</li>
+          <li>Monitoring: Zabbix, Grafana, OpenSearch, vRealize Log Insight, vROps.</li>
+          <li>Veeam Backup & Replication, VMware SRM, PostgreSQL, Docker, Nginx, HAProxy, Postfix, Nextcloud.</li>
+          <li>Automated Greenbone report processing: Python + Flet, GUI, vulnerability extraction and IP-to-hostname mapping.</li>
+          <li>Fixed an IndexError in an existing script and reworked the solution, removing manual code editing.</li>
+          <li>Trained 3 new Tier 2 engineers.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">VMware</span><span class="chip">KVM</span><span class="chip">Ansible</span>
+          <span class="chip">Python</span><span class="chip">PowerCLI</span><span class="chip">Zabbix</span>
+          <span class="chip">Veeam</span><span class="chip">NSX-T</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        FEB 2021 — NOV 2025
+        <em>4 years 10 months</em>
+      </div>
+      <div>
+        <h3>Engineer, Tier 2</h3>
+        <div class="company">ONLANTA LLC · System Integration</div>
+        <p>
+          Supported and administered virtual infrastructure based on VMware and oVirt,
+          including creation, configuration, and migration of virtual machines, resource pool
+          management, and production support.
+        </p>
+        <ul>
+          <li>Linux system administration, SSH, Bash, automation of routine tasks.</li>
+          <li>Zabbix for monitoring, PostgreSQL and Oracle SQL for databases.</li>
+          <li>Development of internal tools and Telegram bots in Python, REST API.</li>
+          <li>Selenium and Selenoid for preparing and running automated tests, Postman for REST API.</li>
+          <li>Trained 2 new Tier 2 engineers.</li>
+          <li>Initiated the concept of an internal Q&A service for sharing technical knowledge.</li>
+          <li>Rebuilt the internal knowledge base and technical documentation from scratch.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">Linux</span><span class="chip">Bash</span><span class="chip">Python</span>
+          <span class="chip">Selenium</span><span class="chip">Postman</span><span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-when">
+        JUL 2019 — FEB 2021
+        <em>1 year 8 months</em>
+      </div>
+      <div>
+        <h3>Service Desk Engineer</h3>
+        <div class="company">ONLANTA LLC · System Integration</div>
+        <p>
+          Worked in a call center, resolved basic technical incidents, registered and routed
+          tickets in the ITSM system, operated within 24×7×365 SLA, including night and weekend shifts.
+        </p>
+        <ul>
+          <li>Wrote knowledge base articles and updated internal regulations.</li>
+          <li>Trained new employees — three in total during this period.</li>
+          <li>Escalated tasks to senior engineers, stress-resistant.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Skills & Tools</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="skills">
+      <div class="skill-card">
+        <h4>Virtualization</h4>
+        <p>VMware vSphere, vCloud Director, NSX-T/NSX-V, oVirt/zVirt, KVM, VDI, VMware SRM.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Linux & Servers</h4>
+        <p>Linux, Bash, SSH, CentOS, Debian, Nginx, Apache, HAProxy, Postfix, Docker.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Automation</h4>
+        <p>Python, Ansible, PowerCLI, REST API, Git, GitLab, Telegram bots, internal tools.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Monitoring & DB</h4>
+        <p>Zabbix, Grafana, OpenSearch, vRealize Log Insight, vROps, PostgreSQL, Oracle SQL.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Backup</h4>
+        <p>Veeam Backup & Replication, Disaster Recovery, incident recovery operations.</p>
+      </div>
+      <div class="skill-card">
+        <h4>Network & Testing</h4>
+        <p>VPN, VLAN/VXLAN, OpenVPN, Selenium, Selenoid, Postman, Atlassian Jira, Confluence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Key Achievement</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="highlight">
+      <h3>Greenbone report processing automation</h3>
+      <p>
+        Built a Python/Flet application with a graphical interface: automatic extraction
+        of vulnerability data, IP-to-hostname mapping, and generation of a final report.
+        Replaced manual PDF processing with a two-button interface.
+      </p>
+      <span class="metric">≈ 1 workday → 15 minutes</span>
+      <p style="font-size:.88rem;color:var(--dim)">
+        Additionally fixed an IndexError in the existing script and reworked the solution,
+        freeing users from manual code editing.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Education</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <div class="edu">
+      <div class="edu-item">
+        <div class="year">2025</div>
+        <div>
+          <h4>Master's — Information Systems and Technologies</h4>
+          <p>Penza Institute of Technology and Business (branch) of Moscow State University of Technology and Management, Penza</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="year">2023</div>
+        <div>
+          <h4>Bachelor's — Information Systems and Technologies</h4>
+          <p>Penza Institute of Technology and Business (branch) of Moscow State University of Technology and Management, Penza</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="year">2019</div>
+        <div>
+          <h4>Secondary Vocational — Information Security Organization and Technology</h4>
+          <p>Penza College of Information and Industrial Technologies · Information Security Technician</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Contact</h2>
+      <span class="sec-line"></span>
+    </div>
+
+    <p style="color:var(--muted);max-width:620px">
+      Open to remote work, not available for business trips. Full-time.
+      Preferred contact method — Telegram.
+    </p>
+
+    <div class="contact">
+      <a href="https://t.me/ONL_Max_Nik" target="_blank" rel="noopener">
+        <small>Telegram</small>
+        <span>@ONL_Max_Nik</span>
+      </a>
+      <a href="https://github.com/Sornodod" target="_blank" rel="noopener">
+        <small>GitHub</small>
+        <span>github.com/Sornodod</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>MAXIM NIKONOV · INFRASTRUCTURE ENGINEER</span>
+    <span>RESUME UPDATED 12.09.2026 14:52</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
