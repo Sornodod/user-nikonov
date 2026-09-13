@@ -65,7 +65,7 @@ body{
   position:absolute;
   top:50%;
   left:50%;
-  border:1px solid rgba(58,191,156,.12);
+  border:1px solid rgba(255,255,255,.14);
   border-radius:50%;
   transform:translate(-50%, -50%);
   animation:orbit-spin linear infinite;
@@ -75,26 +75,26 @@ body{
 .orbit--1{
   width:32%;
   height:32%;
-  border-color:rgba(58,191,156,.14);
+  border-color:rgba(255,255,255,.16);
   animation-duration:120s;
 }
 .orbit--2{
   width:52%;
   height:52%;
-  border-color:rgba(58,191,156,.13);
+  border-color:rgba(255,255,255,.15);
   animation-duration:180s;
   animation-direction:reverse;
 }
 .orbit--3{
   width:74%;
   height:74%;
-  border-color:rgba(58,191,156,.10);
+  border-color:rgba(255,255,255,.12);
   animation-duration:260s;
 }
 .orbit--4{
   width:96%;
   height:96%;
-  border-color:rgba(58,191,156,.09);
+  border-color:rgba(255,255,255,.11);
   animation-duration:340s;
   animation-direction:reverse;
 }
