@@ -245,6 +245,103 @@
   .job li{margin-bottom:7px}
   .job li::marker{color:var(--accent)}
 
+  /* ---------- job content blocks ---------- */
+  .job-block{
+    margin-top:22px;
+    padding-top:18px;
+    border-top:1px dashed var(--line);
+  }
+  .job-block:first-of-type{
+    margin-top:14px;
+  }
+  .job-block__head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .job-block__mark{
+    color:var(--accent);
+    font-size:.75rem;
+    line-height:1;
+    text-shadow:0 0 10px rgba(58,191,156,.5);
+  }
+  .job-block__title{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--accent2);
+  }
+
+  /* achievements — numbered with accent */
+  .job-achievements{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:grid;
+    gap:10px;
+  }
+  .job-achievements li{
+    display:grid;
+    grid-template-columns:36px 1fr;
+    gap:10px;
+    align-items:start;
+    color:var(--muted);
+    font-size:.94rem;
+    line-height:1.65;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-left:2px solid var(--accent);
+    background:linear-gradient(90deg, rgba(58,191,156,.05), transparent 60%);
+    border-radius:2px;
+    transition:border-color .25s, background .25s;
+  }
+  .job-achievements li:hover{
+    border-left-color:var(--accent2);
+    background:linear-gradient(90deg, rgba(58,191,156,.09), transparent 70%);
+  }
+  .job-achievements__num{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--accent2);
+    padding-top:2px;
+    text-align:right;
+  }
+  .job-achievements__text{display:block}
+
+  /* stack — compact tag chips */
+  .job-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .job-stack__tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:.06em;
+    border:1px solid var(--line2);
+    color:var(--khaki);
+    padding:4px 9px;
+    border-radius:2px;
+    background:rgba(169,212,193,.05);
+    transition:border-color .2s, color .2s, background .2s;
+  }
+  .job-stack__tag:hover{
+    border-color:var(--accent);
+    color:var(--cream);
+    background:rgba(58,191,156,.10);
+  }
+
+  /* responsibilities */
+  .job-resp{
+    margin:0;
+    color:var(--muted);
+    font-size:.94rem;
+    line-height:1.65;
+  }
+
   .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
   .chip{
     font-family:var(--mono); font-size:10.5px; letter-spacing:.08em;
@@ -414,27 +511,100 @@
         <em>11 months</em>
       </div>
       <div>
-        <h3>Engineer, Tier 2.5</h3>
+        <h3>Infrastructure Engineer</h3>
         <div class="company">ONLANTA LLC · System Integration</div>
-        <p>
-          Supporting and administering enterprise infrastructure based on VMware vSphere/vCloud Director,
-          oVirt/zVirt, and KVM. Working with Linux and Windows servers, virtualization, backup,
-          monitoring, and network infrastructure in production.
-        </p>
-        <ul>
-          <li>Migrations of virtual machines and infrastructure services, VDI, datastore, and cluster support.</li>
-          <li>Incident recovery, VMware NSX-T/NSX-V, VPN, VLAN/VXLAN, Disaster Recovery.</li>
-          <li>Automation with Bash, Python, Ansible, PowerCLI; GitLab and Git-based workflow.</li>
-          <li>Monitoring: Zabbix, Grafana, OpenSearch, vRealize Log Insight, vROps.</li>
-          <li>Veeam Backup & Replication, VMware SRM, PostgreSQL, Docker, Nginx, HAProxy, Postfix, Nextcloud.</li>
-          <li>Automated Greenbone report processing: Python + Flet, GUI, vulnerability extraction and IP-to-hostname mapping.</li>
-          <li>Fixed an IndexError in an existing script and reworked the solution, removing manual code editing.</li>
-          <li>Trained 3 new Tier 2 engineers.</li>
-        </ul>
-        <div class="chips">
-          <span class="chip">VMware</span><span class="chip">KVM</span><span class="chip">Ansible</span>
-          <span class="chip">Python</span><span class="chip">PowerCLI</span><span class="chip">Zabbix</span>
-          <span class="chip">Veeam</span><span class="chip">NSX-T</span>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Achievements</span>
+          </div>
+          <ol class="job-achievements">
+            <li>
+              <span class="job-achievements__num">01</span>
+              <span class="job-achievements__text">
+                Automated Greenbone report processing: built a Python/Flet application with a graphical interface
+                for automatic vulnerability extraction, IP-to-hostname mapping, and final report generation.
+                Reduced processing time from a nearly full workday to ~15 minutes per report.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">02</span>
+              <span class="job-achievements__text">
+                Fixed an IndexError in the existing Greenbone Python processing script, then reworked the solution
+                and added a GUI, fully removing the need for manual source-code editing.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">03</span>
+              <span class="job-achievements__text">
+                Resolved a mass VM resource management issue in VMware Cloud Director: identified a mismatch between
+                Compute Policy and actual VM parameters caused by the internal billing system automatically changing
+                CPU and RAM. Incorrect resource limits prevented the customer from independently changing specs on
+                all affected VMs. Traced the root cause and restored configuration-to-policy consistency without
+                service downtime, returning full resource control to the customer.
+              </span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Stack</span>
+          </div>
+          <div class="job-stack">
+            <span class="job-stack__tag">VMware vSphere</span>
+            <span class="job-stack__tag">VMware vCloud Director</span>
+            <span class="job-stack__tag">oVirt</span>
+            <span class="job-stack__tag">zVirt</span>
+            <span class="job-stack__tag">KVM</span>
+            <span class="job-stack__tag">Kubernetes</span>
+            <span class="job-stack__tag">Linux</span>
+            <span class="job-stack__tag">Windows Server</span>
+            <span class="job-stack__tag">Ansible</span>
+            <span class="job-stack__tag">Bash</span>
+            <span class="job-stack__tag">Python</span>
+            <span class="job-stack__tag">PowerShell</span>
+            <span class="job-stack__tag">PowerCLI</span>
+            <span class="job-stack__tag">GitLab</span>
+            <span class="job-stack__tag">Docker</span>
+            <span class="job-stack__tag">Zabbix</span>
+            <span class="job-stack__tag">Grafana</span>
+            <span class="job-stack__tag">OpenSearch</span>
+            <span class="job-stack__tag">vRealize Log Insight</span>
+            <span class="job-stack__tag">vROps</span>
+            <span class="job-stack__tag">Veeam B&amp;R</span>
+            <span class="job-stack__tag">VMware SRM</span>
+            <span class="job-stack__tag">NSX-T</span>
+            <span class="job-stack__tag">NSX-V</span>
+            <span class="job-stack__tag">PostgreSQL</span>
+            <span class="job-stack__tag">MySQL</span>
+            <span class="job-stack__tag">ClickHouse</span>
+            <span class="job-stack__tag">Nginx</span>
+            <span class="job-stack__tag">HAProxy</span>
+            <span class="job-stack__tag">Postfix</span>
+            <span class="job-stack__tag">Nextcloud</span>
+            <span class="job-stack__tag">VPN</span>
+            <span class="job-stack__tag">VLAN</span>
+            <span class="job-stack__tag">VXLAN</span>
+            <span class="job-stack__tag">VDI</span>
+            <span class="job-stack__tag">Disaster Recovery</span>
+          </div>
+        </div>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Responsibilities</span>
+          </div>
+          <p class="job-resp">
+            Supporting and administering enterprise infrastructure based on VMware, oVirt/zVirt, and KVM.
+            Working with Kubernetes clusters and workloads, Linux and Windows servers, virtual networks,
+            datastores and virtualization clusters, backup, monitoring, and infrastructure services.
+            Diagnosing and resolving incidents, collaborating with customers and adjacent teams,
+            preparing technical documentation and internal guidelines.
+          </p>
         </div>
       </div>
     </div>
@@ -447,23 +617,104 @@
       <div>
         <h3>Engineer, Tier 2</h3>
         <div class="company">ONLANTA LLC · System Integration</div>
-        <p>
-          Supported and administered virtual infrastructure based on VMware and oVirt,
-          including creation, configuration, and migration of virtual machines, resource pool
-          management, and production support.
-        </p>
-        <ul>
-          <li>Linux system administration, SSH, Bash, automation of routine tasks.</li>
-          <li>Zabbix for monitoring, PostgreSQL and Oracle SQL for databases.</li>
-          <li>Development of internal tools and Telegram bots in Python, REST API.</li>
-          <li>Selenium and Selenoid for preparing and running automated tests, Postman for REST API.</li>
-          <li>Trained 2 new Tier 2 engineers.</li>
-          <li>Initiated the concept of an internal Q&A service for sharing technical knowledge.</li>
-          <li>Rebuilt the internal knowledge base and technical documentation from scratch.</li>
-        </ul>
-        <div class="chips">
-          <span class="chip">Linux</span><span class="chip">Bash</span><span class="chip">Python</span>
-          <span class="chip">Selenium</span><span class="chip">Postman</span><span class="chip">PostgreSQL</span>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Achievements</span>
+          </div>
+          <ol class="job-achievements">
+            <li>
+              <span class="job-achievements__num">01</span>
+              <span class="job-achievements__text">
+                Developed internal tools and Telegram bots in Python to automate workflows and integrate
+                with internal services via REST API, reducing the volume of manual operations in project support.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">02</span>
+              <span class="job-achievements__text">
+                Rebuilt the internal knowledge base from scratch: reviewed existing technical documentation,
+                refreshed outdated materials, and brought instructions up to date, making it easier to find
+                solutions and share technical knowledge between team members.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">03</span>
+              <span class="job-achievements__text">
+                Trained 2 new Tier 2 engineers, transferring knowledge on internal processes, tooling, and
+                infrastructure support practices.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">04</span>
+              <span class="job-achievements__text">
+                Initiated the concept of an internal Q&amp;A service for sharing technical knowledge between
+                employees and building a shared expert base across projects and infrastructure.
+              </span>
+            </li>
+            <li>
+              <span class="job-achievements__num">05</span>
+              <span class="job-achievements__text">
+                Supported multiple production projects simultaneously, collaborating with customers, Service Desk,
+                and adjacent engineering teams, and participating in diagnosing and resolving infrastructure and
+                application issues.
+              </span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Stack</span>
+          </div>
+          <div class="job-stack">
+            <span class="job-stack__tag">VMware</span>
+            <span class="job-stack__tag">oVirt</span>
+            <span class="job-stack__tag">Linux</span>
+            <span class="job-stack__tag">Bash</span>
+            <span class="job-stack__tag">Python</span>
+            <span class="job-stack__tag">Zabbix</span>
+            <span class="job-stack__tag">PostgreSQL</span>
+            <span class="job-stack__tag">MySQL</span>
+            <span class="job-stack__tag">Oracle SQL</span>
+            <span class="job-stack__tag">REST API</span>
+            <span class="job-stack__tag">Selenium</span>
+            <span class="job-stack__tag">Selenoid</span>
+            <span class="job-stack__tag">Postman</span>
+            <span class="job-stack__tag">Telegram API</span>
+            <span class="job-stack__tag">SSH</span>
+            <span class="job-stack__tag">Jira</span>
+            <span class="job-stack__tag">Confluence</span>
+          </div>
+        </div>
+
+        <div class="job-block">
+          <div class="job-block__head">
+            <span class="job-block__mark">◆</span>
+            <span class="job-block__title">Responsibilities</span>
+          </div>
+          <p class="job-resp">
+            Supported and administered virtual infrastructure based on VMware and oVirt, including creation,
+            configuration, and migration of virtual machines, resource pool management, and production support.
+          </p>
+          <p class="job-resp">
+            Administered Linux systems, worked with SSH and Bash, automated routine tasks. Monitored infrastructure
+            with Zabbix, worked with PostgreSQL and Oracle SQL for analysis and diagnostics.
+          </p>
+          <p class="job-resp">
+            Developed internal tools and Telegram bots in Python, automated workflows and integration with
+            internal services via REST API. Participated in support, diagnostics, and resolution of issues
+            in infrastructure and application services.
+          </p>
+          <p class="job-resp">
+            Prepared and ran automated tests with Selenium and Selenoid, tested and diagnosed REST APIs with Postman.
+          </p>
+          <p class="job-resp">
+            Prepared technical documentation, guidelines, and regulations, and trained new employees and customers.
+            Supported multiple projects simultaneously and collaborated with customers and adjacent teams.
+          </p>
         </div>
       </div>
     </div>
