@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>CV Nikonov</title>
-<link rel="icon" type="image/png" href="favicon.png" />
-<link rel="stylesheet" href="bg.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<link rel="stylesheet" href="../bg.css" />
 <style>
   :root{
     --bg:#0d0c0a;
@@ -244,6 +244,33 @@
   .job ul{margin:0; padding-left:18px; color:var(--muted); font-size:.94rem}
   .job li{margin-bottom:7px}
   .job li::marker{color:var(--accent)}
+  .job-section{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:18px 0 8px;
+  }
+  .job-achievements{
+    margin:0 0 8px;
+    padding-left:20px;
+    color:var(--muted);
+    font-size:.94rem;
+  }
+  .job-achievements li{margin-bottom:10px}
+  .job-achievements li::marker{color:var(--accent2); font-family:var(--mono)}
+  .job-stack{
+    margin:0;
+    color:var(--muted);
+    font-size:.9rem;
+    line-height:1.7;
+  }
+  .job-resp{
+    margin:0;
+    color:var(--muted);
+    font-size:.94rem;
+  }
 
   .chips{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px}
   .chip{
@@ -387,7 +414,7 @@
       </div>
 
       <div class="avatar">
-        <img src="ava.png" alt="Maxim Nikonov" />
+        <img src="../ava.png" alt="Maxim Nikonov" />
       </div>
     </div>
 
@@ -414,28 +441,46 @@
         <em>11 months</em>
       </div>
       <div>
-        <h3>Engineer, Tier 2.5</h3>
+        <h3>Infrastructure Engineer</h3>
         <div class="company">ONLANTA LLC · System Integration</div>
-        <p>
-          Supporting and administering enterprise infrastructure based on VMware vSphere/vCloud Director,
-          oVirt/zVirt, and KVM. Working with Linux and Windows servers, virtualization, backup,
-          monitoring, and network infrastructure in production.
+
+        <p class="job-section">Achievements</p>
+        <ol class="job-achievements">
+          <li>
+            Automated Greenbone report processing: built a Python/Flet application with a graphical interface
+            for automatic vulnerability extraction, IP-to-hostname mapping, and final report generation.
+            Reduced processing time from a nearly full workday to ~15 minutes per report.
+          </li>
+          <li>
+            Fixed an IndexError in the existing Greenbone Python processing script, then reworked the solution
+            and added a GUI, fully removing the need for manual source-code editing.
+          </li>
+          <li>
+            Resolved a mass VM resource management issue in VMware Cloud Director: identified a mismatch between
+            Compute Policy and actual VM parameters, caused by the internal billing system automatically changing
+            CPU and RAM. Incorrect resource limits prevented the customer from independently changing specs on
+            all affected VMs. Traced the root cause and restored configuration-to-policy consistency without
+            service downtime, returning full resource control to the customer.
+          </li>
+        </ol>
+
+        <p class="job-section">Stack</p>
+        <p class="job-stack">
+          VMware vSphere, VMware vCloud Director, oVirt, zVirt, KVM, Kubernetes, Linux, Windows Server,
+          Ansible, Bash, Python, PowerShell, PowerCLI, GitLab, Docker, Zabbix, Grafana, OpenSearch,
+          vRealize Log Insight, vROps, Veeam Backup & Replication, VMware SRM, VMware NSX-T, NSX-V,
+          PostgreSQL, MySQL, ClickHouse, Nginx, HAProxy, Postfix, Nextcloud, VPN, VLAN, VXLAN, VDI,
+          Disaster Recovery.
         </p>
-        <ul>
-          <li>Migrations of virtual machines and infrastructure services, VDI, datastore, and cluster support.</li>
-          <li>Incident recovery, VMware NSX-T/NSX-V, VPN, VLAN/VXLAN, Disaster Recovery.</li>
-          <li>Automation with Bash, Python, Ansible, PowerCLI; GitLab and Git-based workflow.</li>
-          <li>Monitoring: Zabbix, Grafana, OpenSearch, vRealize Log Insight, vROps.</li>
-          <li>Veeam Backup & Replication, VMware SRM, PostgreSQL, Docker, Nginx, HAProxy, Postfix, Nextcloud.</li>
-          <li>Automated Greenbone report processing: Python + Flet, GUI, vulnerability extraction and IP-to-hostname mapping.</li>
-          <li>Fixed an IndexError in an existing script and reworked the solution, removing manual code editing.</li>
-          <li>Trained 3 new Tier 2 engineers.</li>
-        </ul>
-        <div class="chips">
-          <span class="chip">VMware</span><span class="chip">KVM</span><span class="chip">Ansible</span>
-          <span class="chip">Python</span><span class="chip">PowerCLI</span><span class="chip">Zabbix</span>
-          <span class="chip">Veeam</span><span class="chip">NSX-T</span>
-        </div>
+
+        <p class="job-section">Responsibilities</p>
+        <p class="job-resp">
+          Supporting and administering enterprise infrastructure based on VMware, oVirt/zVirt, and KVM.
+          Working with Kubernetes clusters and workloads, Linux and Windows servers, virtual networks,
+          datastores and virtualization clusters, backup, monitoring, and infrastructure services.
+          Diagnosing and resolving incidents, collaborating with customers and adjacent teams,
+          preparing technical documentation and internal guidelines.
+        </p>
       </div>
     </div>
 
